@@ -21,15 +21,6 @@ The project comprises two main tasks:
 - **Performance Enhancement:** The optimized `matmult01` showed a notable reduction in execution time and increase in GFlops/s across different matrix sizes compared to `matmult00`.
 - Advanced CUDA optimizations like tiling and memory coalescing were instrumental in achieving these gains.
 
-| Metric            |                Non-Coalesced Vector Addition       |             Coalesced Vector Addition              |
-|-------------------|----------------|-----------------|-----------------|----------------|-----------------|-----------------|
-| Metric            |   (500 values) |   (1000 values) |   (2000 values) |   (500 values) |   (1000 values) |   (2000 values) |
-|-------------------|----------------|-----------------|-----------------|----------------|-----------------|-----------------|
-| Execution Time    | 0.000378s      | 0.000720s       | 0.001498s       | 0.000252s      | 0.000502s       | 0.000996s       |
-| GFlopsS           | 10.16          | 10.67           | 10.25           | 15.24          | 15.30           | 15.42           |
-| GBytesS           | 121.94         | 128.00          | 123.05          | 182.85         | 183.55          | 185.04          |
-
-
 ## How to Run the Code
 Ensure CUDA and the appropriate NVIDIA drivers are installed. Use the following commands in a terminal:
 
