@@ -1,0 +1,20 @@
+rm -f vecadd00 matmult00 vecadd01 matmult01 *.o
+/usr/local/cuda/bin/nvcc vecaddKernel00.cu -c -o vecaddKernel00.o -O3 
+/usr/local/cuda/bin/nvcc timer.cu -c -o timer.o -O3 
+/usr/local/cuda/bin/nvcc vecadd.cu vecaddKernel00.o -o vecadd00 -L/usr/local/cuda/lib64 -L/usr/local/cuda/samples/common/lib/linux/x86_64 timer.o -O3 
+/usr/local/cuda/bin/nvcc matmultKernel00.cu -c -o matmultKernel00.o -O3 
+/usr/local/cuda/bin/nvcc matmult.cu matmultKernel00.o -o matmult00 -L/usr/local/cuda/lib64 -L/usr/local/cuda/samples/common/lib/linux/x86_64 timer.o -O3 
+/usr/local/cuda/bin/nvcc vecaddKernel01.cu -c -o vecaddKernel01.o -O3 
+/usr/local/cuda/bin/nvcc vecadd.cu vecaddKernel01.o -o vecadd01 -L/usr/local/cuda/lib64 -L/usr/local/cuda/samples/common/lib/linux/x86_64 timer.o -O3 
+/usr/local/cuda/bin/nvcc matmultKernel01.cu -c -o matmultKernel01.o -O3  -DFOOTPRINT_SIZE=32
+/usr/local/cuda/bin/nvcc matmult.cu matmultKernel01.o -o matmult01 -L/usr/local/cuda/lib64 -L/usr/local/cuda/samples/common/lib/linux/x86_64 timer.o -O3  -DFOOTPRINT_SIZE=32
+make: Nothing to be done for 'all'.
+Total vector size: 3840000
+Time: 0.000252 (sec), GFlopsS: 15.237585, GBytesS: 182.851020
+Test PASSED 
+Total vector size: 7680000
+Time: 0.000502 (sec), GFlopsS: 15.295468, GBytesS: 183.545611
+Test PASSED 
+Total vector size: 15360000
+Time: 0.000996 (sec), GFlopsS: 15.419940, GBytesS: 185.039280
+Test PASSED 

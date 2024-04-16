@@ -1,0 +1,26 @@
+rm -f vecadd00 matmult00 vecadd01 matmult01 *.o
+/usr/local/cuda/bin/nvcc vecaddKernel00.cu -c -o vecaddKernel00.o -O3 
+/usr/local/cuda/bin/nvcc timer.cu -c -o timer.o -O3 
+/usr/local/cuda/bin/nvcc vecadd.cu vecaddKernel00.o -o vecadd00 -L/usr/local/cuda/lib64 -L/usr/local/cuda/samples/common/lib/linux/x86_64 timer.o -O3 
+/usr/local/cuda/bin/nvcc matmultKernel00.cu -c -o matmultKernel00.o -O3 
+/usr/local/cuda/bin/nvcc matmult.cu matmultKernel00.o -o matmult00 -L/usr/local/cuda/lib64 -L/usr/local/cuda/samples/common/lib/linux/x86_64 timer.o -O3 
+/usr/local/cuda/bin/nvcc vecaddKernel01.cu -c -o vecaddKernel01.o -O3 
+/usr/local/cuda/bin/nvcc vecadd.cu vecaddKernel01.o -o vecadd01 -L/usr/local/cuda/lib64 -L/usr/local/cuda/samples/common/lib/linux/x86_64 timer.o -O3 
+/usr/local/cuda/bin/nvcc matmultKernel01.cu -c -o matmultKernel01.o -O3  -DFOOTPRINT_SIZE=32
+/usr/local/cuda/bin/nvcc matmult.cu matmultKernel01.o -o matmult01 -L/usr/local/cuda/lib64 -L/usr/local/cuda/samples/common/lib/linux/x86_64 timer.o -O3  -DFOOTPRINT_SIZE=32
+make: Nothing to be done for 'all'.
+Data dimensions: 256x256 
+Grid Dimensions: 8x8 
+Block Dimensions: 16x16 
+Footprint Dimensions: 32x32 
+Time: 0.000032 (sec), nFlops: 33554432, GFlopsS: 1050.279764
+Data dimensions: 512x512 
+Grid Dimensions: 16x16 
+Block Dimensions: 16x16 
+Footprint Dimensions: 32x32 
+Time: 0.000183 (sec), nFlops: 268435456, GFlopsS: 1467.926867
+Data dimensions: 1024x1024 
+Grid Dimensions: 32x32 
+Block Dimensions: 16x16 
+Footprint Dimensions: 32x32 
+Time: 0.001305 (sec), nFlops: 2147483648, GFlopsS: 1645.751737
